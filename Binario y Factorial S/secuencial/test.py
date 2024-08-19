@@ -1,4 +1,4 @@
-from gestorArre import Pila
+from Pila import Pila
 
 def test():
     gestorArreglo = Pila(10)
@@ -13,7 +13,7 @@ def test():
     gestorArreglo.mostrar()
     
     binario.numABinario(10)
-    binario.mostrar()
+    binario.mostrarBinario()
     
     factorial.factorial(5)
     factorial.mostrar()

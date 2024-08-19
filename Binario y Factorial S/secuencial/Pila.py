@@ -1,35 +1,41 @@
 import numpy as np
 
 class Pila:
-    __numeros: np.ndarray
-    __cantidad: int
-    __tope: int
-
-    def __init__(self,tope):
-        self.__numeros = np.empty(tope, dtype=int)
+    def __init__(self, dimension):
+        self.__numeros = np.empty(dimension, dtype=int)
         self.__cantidad = 0
-        self.__tope = tope
+        self.__tope = -1
     
     def insertar(self, numero):
-        if self.__cantidad < self.__tope:
-            self.__numeros[self.__cantidad] = numero
+        if self.__tope < len(self.__numeros) - 1:
+            self.__tope += 1
+            self.__numeros[self.__tope] = numero
             self.__cantidad += 1
+            return numero
         else:
-            print("No se pueden añadir más elementos al arreglo")
+            print("Pila llena")
+            return 0
     
     def vacia(self):
-        return self.__cantidad == 0
+        return self.__tope == -1
     
     def suprimir(self):
         if self.vacia():
             print("Pila vacía")
-            return None
+            return 0
         else:
-            x = self.__numeros[self.__cantidad - 1]
-            self.__cantidad -= 1  # Disminuimos la cantidad después de eliminar
-            return x
-    
+            numero = self.__numeros[self.__tope]
+            self.__tope -= 1
+            self.__cantidad -= 1
+            return numero
+            
     def mostrar(self):
+        if not self.vacia():
+            for i in range(self.__tope + 1):
+                print(self.__numeros[i])
+
+            
+    def mostrarBinario(self):
         binario = self.__numeros[:self.__cantidad].tolist()
         print(list(reversed(binario)))
     
